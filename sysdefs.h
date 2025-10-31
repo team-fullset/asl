@@ -126,6 +126,27 @@
 #endif
 
 /*---------------------------------------------------------------------------*/
+/* ditto for ARM64/AArch64 platforms */
+
+#ifdef __aarch64__
+#ifndef __aarch64
+#define __aarch64
+#endif
+#endif
+
+#ifdef __arm64__
+#ifndef __aarch64
+#define __aarch64
+#endif
+#endif
+
+#ifdef __arm64
+#ifndef __aarch64
+#define __aarch64
+#endif
+#endif
+
+/*---------------------------------------------------------------------------*/
 /* If the compiler claims to be ANSI, we surely can use prototypes */
 
 #ifdef __STDC__
@@ -1170,6 +1191,61 @@ typedef unsigned long long Card64;
 #endif /* __EPOC32__ */
 
 #endif /* __arm */
+
+/*===========================================================================*/
+/* ARM64/AArch64 platforms */
+
+#ifdef __aarch64
+
+#define ARCHPRNAME "aarch64"
+
+/*---------------------------------------------------------------------------*/
+/* ARM64 with macOS (Apple Silicon) */
+
+#ifdef __APPLE__
+#define ARCHSYSNAME "apple-macosx"
+#define DEFSMADE
+#define OPENRDMODE "r"
+#define OPENWRMODE "w"
+#define OPENUPMODE "r+"
+#define IEEEFLOAT
+typedef signed char Integ8;
+typedef unsigned char Card8;
+typedef signed short Integ16;
+typedef unsigned short Card16;
+#define HAS16
+typedef signed int Integ32;
+typedef unsigned int Card32;
+typedef signed long long Integ64;
+typedef unsigned long long Card64;
+#define HAS64
+#define LOCALE_NLS
+#endif
+
+/*---------------------------------------------------------------------------*/
+/* ARM64 with Linux */
+
+#ifdef __linux__
+#define ARCHSYSNAME "unknown-linux"
+#define DEFSMADE
+#define OPENRDMODE "r"
+#define OPENWRMODE "w"
+#define OPENUPMODE "r+"
+#define IEEEFLOAT
+typedef signed char Integ8;
+typedef unsigned char Card8;
+typedef signed short Integ16;
+typedef unsigned short Card16;
+#define HAS16
+typedef signed int Integ32;
+typedef unsigned int Card32;
+typedef signed long long Integ64;
+typedef unsigned long long Card64;
+#define HAS64
+#define LOCALE_NLS
+#endif
+
+#endif /* __aarch64 */
 
 /*===========================================================================*/
 /* Misc... */
